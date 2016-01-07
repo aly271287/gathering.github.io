@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>The Gathering Page</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+
+    <script type='text/javascript' src='http://www.google.com/jsapi'></script>
+    <script type='text/javascript'>
+        google.load('visualization', '1', {'packages':['corechart']});
+        google.setOnLoadCallback(drawChart1);
+        function drawChart1() {
+
+            var query1 = new google.visualization.Query('https://docs.google.com/spreadsheets/d/1SBMunDPjhCspmjLzQSKx0wyFeDTDWLcSzffKtAWvZ_0/gviz/tq?gid=1727737465&headers=1');
+            query1.setQuery('select A, B');
+            query1.send(handleQueryResponse);
+
+            var query2 = new google.visualization.Query('https://docs.google.com/spreadsheets/d/1SBMunDPjhCspmjLzQSKx0wyFeDTDWLcSzffKtAWvZ_0/gviz/tq?gid=1727737465&headers=1');
+            query2.setQuery('select A, C');
+            query2.send(handleQueryResponse2);
+
+            var query3 = new google.visualization.Query('https://docs.google.com/spreadsheets/d/1SBMunDPjhCspmjLzQSKx0wyFeDTDWLcSzffKtAWvZ_0/gviz/tq?gid=1727737465&headers=1');
+            query3.setQuery('select A, D');
+            query3.send(handleQueryResponse3);
+        }
+
+        function handleQueryResponse(response) {
+        var data1 = response.getDataTable();
+        var chart1 = new google.visualization.PieChart(document.getElementById('chart_div1'));
+        chart1.draw(data1, null);
+      }
+
+        function handleQueryResponse2(response) {
+        var data2 = response.getDataTable();
+        var chart2 = new google.visualization.PieChart(document.getElementById('chart_div2'));
+        chart2.draw(data2, null);
+      }
+
+        function handleQueryResponse3(response) {
+        var data3 = response.getDataTable();
+        var chart3 = new google.visualization.PieChart(document.getElementById('chart_div3'));
+        chart3.draw(data3, null);
+      }
+
+    </script>
+</head>
+
+<body>
+    <p> Testing Google line chart tool </p>
+    // Note how you must specify the size of the container element explicitly!
+    <div id='chart_div1' style='width: 700px; height: 240px;'></div>
+
+    <br> <br> <br> 
+
+    <p> Testing another chart </p>
+    <div id='chart_div2' style='width: 700px; height: 240px;'></div>
+
+    <br> <br> <br> 
+
+    <p> Testing a third chart </p>
+    <div id='chart_div3' style='width: 700px; height: 240px;'></div>
+</body>
+</html>
